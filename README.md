@@ -14,6 +14,8 @@ Made by [TomasEliz](https://github.com/TomasEliz) and [olhanotolga](https://gith
 
 ## Run locally
 
+In the command line interface, run `npm install` to install the dependencies.
+
 ### Available Scripts
 
 - `npm start` — Runs the app in the development mode on [http://localhost:3000](http://localhost:3000).
