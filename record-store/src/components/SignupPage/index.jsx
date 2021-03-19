@@ -5,6 +5,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "../Button";
 import PageHeader from "../PageHeader";
 import { Link } from "react-router-dom";
+import SideImage from '../SideImage'
+import jmb from '../../assets/jmb.jpg'
 
 const SignupPage = () => {
   return (
@@ -55,6 +57,7 @@ const SignupPage = () => {
           <small>Already have an account? Log in here!</small>
         </Link>
       </Form>
+	  <SideImage image={jmb} altTxt="another guy with a cigarette"/>
     </StyledLogin>
   );
 };

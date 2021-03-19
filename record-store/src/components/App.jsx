@@ -6,18 +6,21 @@ import SignupPage from "./SignupPage";
 import StorePage from "./Store";
 import ProfilePage from "./ProfilePage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import AppContextProvider from "../context/Context";
 
 const App = () => {
   return (
     <Router>
-      <Header></Header>
-      <Switch>
-        <Route path="/" exact component={LandingPage} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/signup" component={SignupPage} />
-        <Route path="/store" component={StorePage} />
-        <Route path="/profile" component={ProfilePage} />
-      </Switch>
+      <AppContextProvider>
+      	<Header/>
+	      <Switch>
+	        <Route path="/" exact component={LandingPage} />
+	        <Route path="/login" component={LoginPage} />
+	        <Route path="/signup" component={SignupPage} />
+	        <Route path="/store" component={StorePage} />
+	        <Route path="/profile" component={ProfilePage} />
+	      </Switch>
+      </AppContextProvider>
     </Router>
   );
 };

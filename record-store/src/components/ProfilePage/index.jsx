@@ -4,6 +4,7 @@ import Form from "../Form";
 import TextField from "@material-ui/core/TextField";
 import Button from "../Button";
 import PageHeader from "../PageHeader";
+import ImageUpdater from '../ImageUpdater';
 import { FiLock } from "react-icons/fi";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
@@ -49,6 +50,7 @@ const ProfilePage = () => {
         />
         <Button text="Log in" />
       </Form>
+	  <ImageUpdater/>
     </StyledLogin>
   );
 };
