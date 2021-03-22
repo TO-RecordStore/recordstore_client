@@ -1,13 +1,13 @@
 import React, {useEffect, useContext} from 'react';
 import PageHeader from '../PageHeader';
 import StyledImageUpdater from './style'
-import {helpFetchImages} from '../../helpers/apiCalls'
+import {helpFetchImages, helpUpdateUser} from '../../helpers/apiCalls'
 import {AppContext} from '../../context/Context'
 
 
 const ImageUpdater = () => {
 
-	const {profileImages, setProfileImages} = useContext(AppContext)
+	const {user, setUser, profileImages, setProfileImages} = useContext(AppContext)
 
 	useEffect(() => {
 		const fetchImages = async () => {
@@ -27,16 +27,27 @@ const ImageUpdater = () => {
 
 	const avatars = profileImages.map((image) => {
 		const alt = altText(image.url)
-		return <img key={alt} src={image.url} alt={alt}/>
+		return <img onClick={() => setUser({...user, avatar: image.url})} key={alt} src={image.url} alt={alt}/>
 	})
 	
+	useEffect(() => {
+		const sendNewUser = async () => {
+			try {
+				await helpUpdateUser(user)
+			} catch(err) {
+				console.log(err);
+			}
+		}
+		return () => sendNewUser
+	})
+	
+
     return(
 		<StyledImageUpdater>
 			<PageHeader/>
-			<img src="" alt=""/>
-			{avatars}
-
+			<img src={user.avatar} alt={user.nickname}/>
 			
+			{avatars}
 			
 		</StyledImageUpdater>
     )

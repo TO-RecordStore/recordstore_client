@@ -10,4 +10,3 @@ export const StyledRecordsContainer = styled.section`
   gap: 3rem;
 `;
 
-export const StyledRecord = styled.div``;
