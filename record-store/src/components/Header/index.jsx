@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import StyledHeader from "./style";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Button from "../Button/";
 import { AppContext } from '../../context/Context'
 
 const Header = () => {
 	const { user } = useContext(AppContext);
+	const history = useHistory()
+	console.log(history);
 
 	return (
 		<StyledHeader>
@@ -17,8 +19,8 @@ const Header = () => {
 					<img src={user.avatar} alt={user.nickname} />
 				</Link> :
 				<>
-					<Button text="Log in" />
-					<Button text="Sign up" />
+					<Button text="Log in" clickHandler={() => history.push('/login')} />
+					<Button text="Sign up" clickHandler={() => history.push('/signup')} />
 				</>
 			}
 		</StyledHeader>

@@ -7,19 +7,23 @@ import StorePage from "./Store";
 import ProfilePage from "./ProfilePage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AppContextProvider from "../context/Context";
+import { ThemeProvider } from 'styled-components'
+import theme from '../theme/theme'
 
 const App = () => {
   return (
     <Router>
       <AppContextProvider>
-      	<Header/>
-	      <Switch>
-	        <Route path="/" exact component={LandingPage} />
-	        <Route path="/login" component={LoginPage} />
-	        <Route path="/signup" component={SignupPage} />
-	        <Route path="/store" component={StorePage} />
-	        <Route path="/profile" component={ProfilePage} />
-	      </Switch>
+      	<ThemeProvider theme={theme}>
+      		<Header/>
+		      <Switch>
+		        <Route path="/" exact component={LandingPage} />
+		        <Route path="/login" component={LoginPage} />
+		        <Route path="/signup" component={SignupPage} />
+		        <Route path="/store" component={StorePage} />
+		        <Route path="/profile" component={ProfilePage} />
+		      </Switch>
+      	</ThemeProvider>
       </AppContextProvider>
     </Router>
   );

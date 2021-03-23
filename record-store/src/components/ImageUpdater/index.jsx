@@ -27,7 +27,7 @@ const ImageUpdater = () => {
 
 	const avatars = profileImages.map((image) => {
 		const alt = altText(image.url)
-		return <img onClick={() => setUser({...user, avatar: image.url})} key={alt} src={image.url} alt={alt}/>
+		return <img tabIndex="0" onClick={() => setUser({...user, avatar: image.url})} key={alt} src={image.url} alt={alt}/>
 	})
 	
 	useEffect(() => {
@@ -44,8 +44,8 @@ const ImageUpdater = () => {
 
     return(
 		<StyledImageUpdater>
-			<PageHeader/>
-			<img src={user.avatar} alt={user.nickname}/>
+			<PageHeader h2="You can also update your avatar!" par="Grab one cool pic! You don't need to save!"/>
+			<img tabIndex="0" className="profile-image" src={user.avatar} alt={user.nickname}/>
 			
 			{avatars}
 			

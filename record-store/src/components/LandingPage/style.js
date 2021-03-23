@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 const StyledLP = styled.main`
+  height: calc(100vh - 7rem);
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
   }
 `;

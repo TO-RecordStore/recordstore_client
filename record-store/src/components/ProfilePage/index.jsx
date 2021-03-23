@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import StyledLogin from "../LoginPage/style";
 import Form from "../Form";
-import TextField from "@material-ui/core/TextField";
+import {TextField, useMediaQuery} from "@material-ui/core";
 import Button from "../Button";
 import PageHeader from "../PageHeader";
 import ImageUpdater from '../ImageUpdater';
@@ -19,6 +19,8 @@ const ProfilePage = () => {
 	  nickname: user.nickname
   })
 
+  const stackSections = useMediaQuery('(max-width:1000px)');
+
   const changeHandler = (e) => setCurrUser({...currUser, [e.target.name]: e.target.value})
 
 	const submitHandler = async (e) => {
@@ -33,7 +35,7 @@ const ProfilePage = () => {
 	}
 
   return (
-    <StyledLogin>
+    <StyledLogin stackSections={stackSections}>
       <Form submitHandler={submitHandler}>
         <PageHeader
           h2={`Your profile, ${user.nickname}`}
