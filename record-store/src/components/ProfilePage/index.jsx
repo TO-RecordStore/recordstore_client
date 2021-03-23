@@ -92,7 +92,7 @@ const ProfilePage = () => {
       onChange={changeHandler}
       name="nickname"
         />
-        <Button text="Log in" />
+        <Button text="Save" />
       </Form>
 	  <ImageUpdater/>
     </StyledLogin>
