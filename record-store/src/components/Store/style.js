@@ -9,5 +9,20 @@ export const StyledRecordsContainer = styled.section`
   grid-template-columns: repeat(auto-fill, 200px);
   gap: 3rem;
   justify-content: center;
+
+	div {
+		position: relative;
+		
+		svg {
+			width: 3rem;
+			height: 3rem;
+			position: absolute;
+			bottom: 0.5rem;
+			right: 0.5rem;
+      background: ${({theme}) => theme.color.white};
+      border-radius: 5px;
+      cursor: pointer;
+		}
+	}
 `;
 

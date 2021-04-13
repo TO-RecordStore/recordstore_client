@@ -3,6 +3,7 @@ import { StyledStore, StyledRecordsContainer} from "./style";
 import PageHeader from "../PageHeader";
 import { helpFetchRecords } from '../../helpers/apiCalls'
 import { AppContext } from '../../context/Context'
+import {BsPlusSquareFill} from 'react-icons/bs'
 
 const StorePage = () => {
 	const { records, setRecords } = useContext(AppContext)
@@ -20,7 +21,12 @@ const StorePage = () => {
 	}, [])
 
 	const recordsArray = records.map(record => {
-		return <img key={record._id} src={record.cover} alt={`${record.artist}: ${record.title}`} />
+		return (
+			<div key={record._id}>
+				<img src={record.cover} alt={`${record.artist}: ${record.title}`} />
+				<BsPlusSquareFill />
+			</div>
+		)
 	})
 
 	return (

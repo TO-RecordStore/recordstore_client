@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import StyledLogin from "./style";
+import StyledMain from "./style";
 import Form from "../Form";
 import {TextField, useMediaQuery} from "@material-ui/core";
 import Button from "../Button";
@@ -9,6 +9,7 @@ import SideImage from "../SideImage";
 import Lemmy from "../../assets/Lemmy.jpg";
 import { helpFetchUser } from "../../helpers/apiCalls";
 import { AppContext } from "../../context/Context";
+
 
 const LoginPage = ({ history }) => {
   const { user, setUser } = useContext(AppContext);
@@ -35,7 +36,7 @@ const LoginPage = ({ history }) => {
   };
 
   return (
-    <StyledLogin>
+    <StyledMain>
       <Form submitHandler={submitHandler}>
         <PageHeader h2="Welcome back!" par="Please fill in your credentials." />
         <TextField
@@ -64,7 +65,7 @@ const LoginPage = ({ history }) => {
 
       {displaySideImage && <SideImage image={Lemmy} altTxt="guy with a cigarette" />}
 
-    </StyledLogin>
+    </StyledMain>
   );
 };
 

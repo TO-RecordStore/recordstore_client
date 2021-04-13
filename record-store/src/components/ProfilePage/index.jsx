@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react";
-import StyledLogin from "../LoginPage/style";
+import StyledMain from "../LoginPage/style";
 import Form from "../Form";
 import {TextField, useMediaQuery} from "@material-ui/core";
 import Button from "../Button";
@@ -35,7 +35,7 @@ const ProfilePage = () => {
 	}
 
   return (
-    <StyledLogin stackSections={stackSections}>
+    <StyledMain stackSections={stackSections}>
       <Form submitHandler={submitHandler}>
         <PageHeader
           h2={`Your profile, ${user.nickname}`}
@@ -95,7 +95,7 @@ const ProfilePage = () => {
         <Button text="Save" />
       </Form>
 	  <ImageUpdater/>
-    </StyledLogin>
+    </StyledMain>
   );
 };
 

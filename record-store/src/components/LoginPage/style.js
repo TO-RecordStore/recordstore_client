@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const StyledLogin = styled.main`
+const StyledMain = styled.main`
   display: flex;
   ${props => props.stackSections && `flex-direction: column`}
 `;
-export default StyledLogin;
+export default StyledMain;
