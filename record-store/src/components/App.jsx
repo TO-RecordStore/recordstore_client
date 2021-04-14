@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AppContextProvider from "../context/Context";
 import { ThemeProvider } from 'styled-components'
 import theme from '../theme/theme'
+import Cart from "./Cart";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
 		        <Route path="/signup" component={SignupPage} />
 		        <Route path="/store" component={StorePage} />
 		        <Route path="/profile" component={ProfilePage} />
+		        <Route path="/cart" component={Cart} />
 		      </Switch>
       	</ThemeProvider>
       </AppContextProvider>

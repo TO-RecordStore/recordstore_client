@@ -9,16 +9,22 @@ const AppContextProvider = ({children}) => {
 		lastName: '',
 		email: '',
 		nickname: '',
-		password: ''
+		password: '',
+		_id: ''
 	})
 	const [records, setRecords] = useState([])
+	// Order = { records: [{record: {}, quantity: 0}], userId: ""}
+	const [currentOrder, setCurrentOrder] = useState([]) // => to DB as: order.records, order.userId
+	const [orders, setOrders] = useState([])
 
 	return (
         <AppContext.Provider
 			value={{
 				profileImages, setProfileImages,
 				user, setUser,
-                records, setRecords,
+        records, setRecords,
+				currentOrder, setCurrentOrder,
+				orders, setOrders
 			}}>
 				{children}
         </AppContext.Provider>

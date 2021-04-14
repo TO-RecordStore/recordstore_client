@@ -6,7 +6,7 @@ import { AppContext } from '../../context/Context'
 import {BsPlusSquareFill} from 'react-icons/bs'
 
 const StorePage = () => {
-	const { records, setRecords } = useContext(AppContext)
+	const { records, setRecords, currentOrder, setCurrentOrder } = useContext(AppContext)
 
 	useEffect(() => {
 		const getRecords = async () => {
@@ -20,11 +20,47 @@ const StorePage = () => {
 		getRecords()
 	}, [])
 
+	// Order = { records: [{record: {}, quantity: 0}], userId: ""}
+	// const [currentOrder, setCurrentOrder] = useState([]) // => to DB as: order.records, order.userId
+	// const [orders, setOrders] = useState([])
+
+	const addToCart = (record) => {
+		
+		const orderedRecord = {
+			record: {
+				_id: record._id,
+				title: record.title,
+				artist: record.artist,
+				price: record.price
+			},
+			quantity: 1
+		}
+		
+		const recordInsideOrder = currentOrder.find(order => order.record._id === orderedRecord.record._id)
+		console.log(recordInsideOrder);
+
+		if (!recordInsideOrder) {
+			setCurrentOrder([...currentOrder, orderedRecord])
+		} else {
+			const newOrder = currentOrder.map(order => {
+				if (order.record._id === recordInsideOrder.record._id) {
+					console.log('I\'m checking!!!');
+					order.quantity++
+				}
+				return order;
+			})
+			setCurrentOrder([...newOrder])
+		}
+		
+	}
+
+	console.log(currentOrder)
+
 	const recordsArray = records.map(record => {
 		return (
 			<div key={record._id}>
 				<img src={record.cover} alt={`${record.artist}: ${record.title}`} />
-				<BsPlusSquareFill />
+				<BsPlusSquareFill onClick={() => addToCart(record)} />
 			</div>
 		)
 	})

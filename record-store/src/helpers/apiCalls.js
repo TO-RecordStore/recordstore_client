@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const URL = 'http://localhost:5001'
+const URL = 'http://localhost:5001';
+axios.defaults.withCredentials = true;
 
 export const helpFetchImages = async () => {
     try {
@@ -12,6 +13,7 @@ export const helpFetchImages = async () => {
 }
 
 export const helpFetchUser = async (email, password) => {
+	
     try {
         const user = await axios.post(`${URL}/users/login`, {
 			email,
@@ -54,3 +56,9 @@ export const helpAddUser = async (userObj) => {
         console.log(err);
     }
 }
+
+// ORDERS
+
+// add order
+
+// get orders
