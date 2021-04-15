@@ -21,7 +21,7 @@ const ImageUpdater = () => {
 			}
 		}
 		fetchImages()
-	},[])
+	},[setProfileImages])
 
 	const altText = (urlStr) => urlStr.match(/weird\w+/)[0]
 

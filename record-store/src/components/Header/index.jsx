@@ -23,7 +23,7 @@ const Header = () => {
 			<Link to="/store" >
 				<h1>record store</h1>
 			</Link>
-			{user.avatar ?
+			{(user && user.avatar) ?
 			<>
 			<Link to='/cart' >
 				<HiShoppingCart />

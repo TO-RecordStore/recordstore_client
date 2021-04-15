@@ -10,6 +10,7 @@ import AppContextProvider from "../context/Context";
 import { ThemeProvider } from 'styled-components'
 import theme from '../theme/theme'
 import Cart from "./Cart";
+import PrivateRoute from './PrivateRoute/'
 
 const App = () => {
   return (
@@ -22,8 +23,8 @@ const App = () => {
 		        <Route path="/login" component={LoginPage} />
 		        <Route path="/signup" component={SignupPage} />
 		        <Route path="/store" component={StorePage} />
-		        <Route path="/profile" component={ProfilePage} />
-		        <Route path="/cart" component={Cart} />
+		        <PrivateRoute path="/profile" redirectTo="/login" component={ProfilePage} />
+		        <PrivateRoute path="/cart" redirectTo='/login' component={Cart} />
 		      </Switch>
       	</ThemeProvider>
       </AppContextProvider>

@@ -51,9 +51,19 @@ export const helpUpdateUser = async ({id, firstName, lastName, nickname}) => {
 export const helpAddUser = async (userObj) => {
     try {
         const user = await axios.post(`${URL}/users`, userObj)
+        console.log(user);
         return user;		
     } catch (err) {
-        console.log(err);
+        return err.response && err.response.data
+    }
+}
+
+export const authenticateUser = async() => {
+    try {
+        const res = await axios.post(`${URL}/me/auth`)
+        return res.data
+    } catch (err) {
+        console.log(err)
     }
 }
 

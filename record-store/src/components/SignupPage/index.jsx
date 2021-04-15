@@ -12,20 +12,33 @@ import StyledMain from "../LoginPage/style";
 
 const SignupPage = ({ history }) => {
   const { user, setUser } = useContext(AppContext);
-  const [repeatPassword, setRepeatPassword] = useState("");
   const [error, setError] = useState(false);
   const displaySideImage = useMediaQuery('(min-width:1000px)');
+  const [currentUser, setCurrentUser] = useState({
+		firstName: '',
+		lastName: '',
+		email: '',
+		nickname: '',
+		password: '',
+    repeatPassword:'',
+	})
 
   const changeHandler = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
   }; 
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (repeatPassword !== user.password) return setError(true);
-    const newUserData = await helpAddUser({ ...user });
-    setUser(newUserData.data);
-    history.push("/store");
+    if (currentUser.repeatPassword !== currentUser.password) return setError(true);
+    try {
+      console.log(user);
+      const newUserData = await helpAddUser(currentUser);
+      console.log(newUserData);
+      setUser(newUserData.data);
+      history.push("/store");
+    } catch(err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -42,7 +55,7 @@ const SignupPage = ({ history }) => {
           type="text"
           name="firstName"
           autoComplete="off"
-          value={user.firstName}
+          value={currentUser.firstName}
           onChange={changeHandler}
           InputProps={{
             inputProps: { minLength: 3, maxLength: 25 },
@@ -56,7 +69,7 @@ const SignupPage = ({ history }) => {
           type="text"
           autoComplete="off"
           name="lastName"
-          value={user.lastName}
+          value={currentUser.lastName}
           onChange={changeHandler}
           InputProps={{
             inputProps: { minLength: 3, maxLength: 25 },
@@ -69,7 +82,7 @@ const SignupPage = ({ history }) => {
           type="email"
           autoComplete="off"
           name="email"
-          value={user.email}
+          value={currentUser.email}
           onChange={changeHandler}
           required
         />
@@ -79,7 +92,7 @@ const SignupPage = ({ history }) => {
           type="text"
           autoComplete="off"
           name="nickname"
-          value={user.nickname}
+          value={currentUser.nickname}
           onChange={changeHandler}
           InputProps={{
             inputProps: { minLength: 3, maxLength: 25 },
@@ -92,7 +105,7 @@ const SignupPage = ({ history }) => {
           type="password"
           autoComplete="off"
           name="password"
-          value={user.password}
+          value={currentUser.password}
           onChange={changeHandler}
           InputProps={{
             inputProps: { minLength: 6, maxLength: 25 },
@@ -105,11 +118,8 @@ const SignupPage = ({ history }) => {
           type="password"
           autoComplete="off"
           name="repeatPassword"
-          value={error ? "Passwords don't match" : repeatPassword}
-          onChange={(e) => {
-            setError(false);
-            setRepeatPassword(e.target.value);
-          }}
+          value={error ? "Passwords don't match" : currentUser.repeatPassword}
+          onChange={changeHandler}
           InputProps={{
             inputProps: { minLength: 6, maxLength: 25 },
           }}

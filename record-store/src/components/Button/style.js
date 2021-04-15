@@ -9,6 +9,7 @@ const StyledButton = styled.button`
 	border-radius: ${props => props.theme.borderRadius.rounded};
 	background-color: none;
     transition: .3s;
+	cursor: pointer;
 
 	:hover {
 		background: ${props => props.theme.color.neutralDark};
