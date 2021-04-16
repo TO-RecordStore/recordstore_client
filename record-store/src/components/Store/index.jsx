@@ -37,14 +37,13 @@ const StorePage = () => {
     const recordInsideOrder = currentOrder.find(
       (order) => order.record._id === orderedRecord.record._id
     );
-    console.log(recordInsideOrder);
+    console.log('recordInsideOrder', recordInsideOrder);
 
     if (!recordInsideOrder) {
       setCurrentOrder([...currentOrder, orderedRecord]);
     } else {
       const newOrder = currentOrder.map((order) => {
         if (order.record._id === recordInsideOrder.record._id) {
-          console.log("I'm checking!!!");
           order.quantity++;
         }
         return order;
