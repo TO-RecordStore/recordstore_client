@@ -53,7 +53,7 @@ const StorePage = () => {
     }
   };
 
-  console.log(currentOrder);
+  // console.log(currentOrder);
 
   const recordsArray = records.map((record) => {
     return (

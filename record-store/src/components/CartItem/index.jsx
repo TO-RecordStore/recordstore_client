@@ -5,7 +5,7 @@ const CartItem = ({ className, orderItem }) => {
   const { cover, artist, title, price } = orderItem.record;
   const { quantity } = orderItem;
 
-  console.log(orderItem);
+  // console.log(orderItem);
 
   return (
     <StyledCartItem className={className}>

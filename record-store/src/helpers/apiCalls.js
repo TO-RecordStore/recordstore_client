@@ -51,7 +51,7 @@ export const helpUpdateUser = async ({id, firstName, lastName, nickname}) => {
 export const helpAddUser = async (userObj) => {
     try {
         const user = await axios.post(`${URL}/users`, userObj)
-        console.log(user);
+        // console.log(user);
         return user;		
     } catch (err) {
         return err.response && err.response.data
@@ -68,7 +68,20 @@ export const authenticateUser = async() => {
 }
 
 // ORDERS
+export const helpAddOrder = async(ordersArray) => {
+    try {
+        const newOrder = await axios.post(`${URL}/orders`, ordersArray)
+        return newOrder.data
+    } catch (err) {
+        console.log(err);
+    }
+}
 
-// add order
-
-// get orders
+export const helpGetOrders = async () => {
+	try {
+		const userOrders = await axios.get(`${URL}/me/orders`)		
+		return userOrders.data
+	} catch(err) {
+		console.log(err);
+	}
+}
