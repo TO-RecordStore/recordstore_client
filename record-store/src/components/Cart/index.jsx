@@ -29,25 +29,35 @@ const Cart = () => {
 		try {
 			const newOrder =  await helpAddOrder(currentOrderIndices)
 			console.log('new order we return from the create() method', newOrder);
-			setOrders([newOrder, ...orders])
+			
+			//! let's not do the following: 
+			//! setOrders([newOrder, ...orders])
+			// because we take only ids to send them to our backend when we create an order. we need all the populated info in here
+
+			getUserOrders()
+
 			setCurrentOrder([])
 		} catch(err) {
 			console.log(err)
 		}
 	}
 
-	useEffect(() => {
-		const getUserOrders = async() => {
-			try {
-				const userOrders = await helpGetOrders()
-				console.log(userOrders);
-				setOrders(userOrders)
-			} catch(err) {
-				console.log(err);
-			}
+	// I'm moving this function into the component scope to make it available to 2 methods
+	const getUserOrders = async() => {
+		try {
+			const userOrders = await helpGetOrders()
+			console.log('userOrders', userOrders);
+			setOrders(userOrders)
+		} catch(err) {
+			console.log(err);
 		}
+	}
+
+
+	useEffect(() => {
 		getUserOrders()
 	}, [])
+
 
 	useEffect(() => {
 		const totalPrice = currentOrder.reduce((acc, curr) => acc + curr.quantity * curr.record.price, 0)
@@ -56,22 +66,20 @@ const Cart = () => {
 
 	const orderArray = currentOrder.map(orderItem => <CartItem key={orderItem.record._id} className={"current-item"} orderItem={orderItem} />)
 
-	console.log(orders);
+	console.log('orders, the state (past orders):', orders);
 
-	const pastOrdersArray = orders.map(order => <span>{`${order}`}</span>)
-
-// 	const pastOrdersArray = orders.map((order) => {
-// 		console.log('order from the past orders ==>', order);
-// 		return <section key={order._id} className="previous-order">
-// 		<header>
-// 			<span>{order.createdAt}</span>
-// 			<span>{order.totalPrice}</span>
-// 		</header>
-// 		<ul>
-// 			{order.records.map((record) => <CartItem key={record._id} className={"past-item"} orderItem={record} />)}
-// 		</ul>
-// 		</section>
-// })
+	const pastOrdersArray = orders.map((order) => {
+		console.log('order from the past orders ==>', order);
+		return <section key={order._id} className="previous-order">
+		<header>
+			<span>{order.createdAt}</span>
+			<span>{order.totalPrice}</span>
+		</header>
+		<ul>
+			{order.records.map((record) => <CartItem key={record._id} className={"past-item"} orderItem={record} />)}
+		</ul>
+		</section>
+})
 
 	return (
 		<StyledCart stackSections={stackSections}>

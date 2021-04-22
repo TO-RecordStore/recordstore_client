@@ -79,7 +79,8 @@ export const helpAddOrder = async(ordersArray) => {
 
 export const helpGetOrders = async () => {
 	try {
-		const userOrders = await axios.get(`${URL}/me/orders`)		
+		const userOrders = await axios.get(`${URL}/me/orders`)
+		
 		return userOrders.data
 	} catch(err) {
 		console.log(err);
