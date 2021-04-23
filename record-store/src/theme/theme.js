@@ -6,7 +6,8 @@ const theme = {
 		neutralDark: "#919191",
 		accentOne: "#eea668",
 		accentTwo: "#000aff",
-		altBg: "#f1efff"
+		altBg: "#f1efff",
+		error: "#F44336"
 	},
 	fontSize: {
 		small: "1.2rem",

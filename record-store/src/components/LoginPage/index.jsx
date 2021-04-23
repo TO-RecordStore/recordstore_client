@@ -12,52 +12,49 @@ import { AppContext } from "../../context/Context";
 
 
 const LoginPage = ({ history }) => {
-  const { user, setUser } = useContext(AppContext);
-  const [err, setErr] = useState(false);
+  const { setUser, setAuthIsDone } = useContext(AppContext);
+  const [error, setError] = useState('');
+  const [currentUser, setCurrentUser] = useState({
+		email: '',
+		password: '',
+	})
 
   const displaySideImage = useMediaQuery('(min-width:1000px)');
 
   const changeHandler = (e) => {
-    setErr(false);
-    setUser({ ...user, [e.target.name]: e.target.value });
+    if (error) setError('');
+    setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
   };
 
   const submitHandler = async (e) => {
     e.preventDefault();
-		if (user.email === "admin@record.com" && user.password === '12345') {
-			const userData = {
-				email: user.email, password: user.password,
-				nickname: "The boss",
-				avatar: "avatar-01.jpg",
-				firstName: "Adam",
-				lastName: "Mad"
-			};
-			setUser(userData);
-			history.push("/store");
-			return;
-		}
 
     try {
-      const userData = await helpFetchUser(user.email, user.password);
-      console.log(userData);
-      if (!userData) return setErr(true);
-      setUser(userData.data);
+      const userData = await helpFetchUser(currentUser.email, currentUser.password);
+      // userData is undefined if the post request to the /users/login route returns an error
+      if (!userData) return setError('Invalid email OR password!');
+      setUser({...userData.data});
+      setAuthIsDone(true)
       history.push("/store");
     } catch (err) {
-      console.log(err);
+      console.log("hi from the catch block:", err);
     }
   };
 
   return (
     <StyledMain>
       <Form submitHandler={submitHandler}>
-        <PageHeader h2="Welcome back!" par="Please fill in your credentials." />
+        <PageHeader
+					h2="Welcome back!"
+					par="Please fill in your credentials."
+					error={error && error}
+				/>
         <TextField
           id="login-email-input"
           label="Email"
           type="email"
           autoComplete="off"
-          value={err ? "Invalid user data!" : user.email}
+          value={currentUser.email}
           onChange={changeHandler}
           name="email"
         />
@@ -66,7 +63,7 @@ const LoginPage = ({ history }) => {
           label="Password"
           type="password"
           autoComplete="off"
-          value={err ? "Invalid user data!" : user.password}
+          value={currentUser.password}
           onChange={changeHandler}
           name="password"
         />

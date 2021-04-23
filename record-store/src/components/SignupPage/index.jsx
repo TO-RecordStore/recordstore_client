@@ -11,8 +11,9 @@ import { helpAddUser } from "../../helpers/apiCalls";
 import StyledMain from "../LoginPage/style";
 
 const SignupPage = ({ history }) => {
-  const { user, setUser } = useContext(AppContext);
-  const [error, setError] = useState(false);
+  const { setUser, setAuthIsDone } = useContext(AppContext);
+  const [validationError, setValidationError] = useState('');
+	const [pwMatchError, setPwMatchError] = useState(false);
   const displaySideImage = useMediaQuery('(min-width:1000px)');
   const [currentUser, setCurrentUser] = useState({
 		firstName: '',
@@ -24,18 +25,26 @@ const SignupPage = ({ history }) => {
 	})
 
   const changeHandler = (e) => {
+		if (pwMatchError) setPwMatchError(false);
+		if (validationError) setValidationError('');
     setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
   }; 
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (currentUser.repeatPassword !== currentUser.password) return setError(true);
+    if (currentUser.repeatPassword !== currentUser.password) return setPwMatchError(true);
     try {
-      console.log(user);
       const newUserData = await helpAddUser(currentUser);
-      console.log(newUserData);
-      setUser(newUserData.data);
-      history.push("/store");
+      
+			if (newUserData.error) {
+				setValidationError(newUserData.error.message);
+				setAuthIsDone(true);
+			}
+			if (newUserData.data) {
+				setUser(newUserData.data);
+				setAuthIsDone(true);
+				history.push("/store");
+			}
     } catch(err) {
       console.log(err);
     }
@@ -47,7 +56,9 @@ const SignupPage = ({ history }) => {
         <PageHeader
           h2="Hurraaaaay! Let us know who you are!"
           par="We won't share your info with anybody."
+					error={validationError && validationError}
         />
+        {/* {validationError && <p className="error">{validationError}</p>} */}
         <TextField
           style={{ width: "50%", display: "inline-flex" }}
           id="signup-first-name-input"
@@ -108,22 +119,24 @@ const SignupPage = ({ history }) => {
           value={currentUser.password}
           onChange={changeHandler}
           InputProps={{
-            inputProps: { minLength: 6, maxLength: 25 },
+            inputProps: { minLength: 8, maxLength: 25 },
           }}
           required
         />
         <TextField
+          error={pwMatchError}
           id="signup-repeatPassword-input"
           label="Repeat password"
           type="password"
           autoComplete="off"
           name="repeatPassword"
-          value={error ? "Passwords don't match" : currentUser.repeatPassword}
+          value={currentUser.repeatPassword}
           onChange={changeHandler}
           InputProps={{
-            inputProps: { minLength: 6, maxLength: 25 },
+            inputProps: { minLength: 8, maxLength: 25 },
           }}
           required
+          helperText={pwMatchError && "Passwords don't match!"}
         />
         <Button text="Create account" />
         <Link to="/login">

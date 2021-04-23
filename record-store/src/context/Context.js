@@ -22,9 +22,20 @@ const AppContextProvider = ({ children }) => {
     const authenticator = async () => {
       try {
         const returnedUser = await authenticateUser();
-        if (returnedUser.error) {
-          setUser();
-          setAuthIsDone(true);
+				
+				console.log("returned user by authenticator", returnedUser);
+        
+				if (!returnedUser) {
+					setUser({
+						firstName: "",
+						lastName: "",
+						email: "",
+						nickname: "",
+						password: "",
+						_id: "",
+					});
+					setAuthIsDone(true);
+					return;
         }
         setUser(returnedUser);
         setAuthIsDone(true);
@@ -34,6 +45,7 @@ const AppContextProvider = ({ children }) => {
     };
     authenticator();
   }, []);
+
 
   return (
     <AppContext.Provider
@@ -48,7 +60,7 @@ const AppContextProvider = ({ children }) => {
         setCurrentOrder,
         orders,
         setOrders,
-				authIsDone
+				authIsDone, setAuthIsDone
       }}
     >
       {children}

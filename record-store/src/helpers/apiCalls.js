@@ -13,16 +13,14 @@ export const helpFetchImages = async () => {
 }
 
 export const helpFetchUser = async (email, password) => {
-	
     try {
         const user = await axios.post(`${URL}/users/login`, {
 			email,
 			password
 		})
-
-        return user;		
+      return user;	
     } catch (err) {
-        console.log(err);
+      console.log(err);
     }
 }
 
@@ -61,6 +59,7 @@ export const helpAddUser = async (userObj) => {
 export const authenticateUser = async() => {
     try {
         const res = await axios.post(`${URL}/me/auth`)
+				console.log("hi from api calls, that's what authenticate user returns", res);
         return res.data
     } catch (err) {
         console.log(err)
