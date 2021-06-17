@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, {useState, useContext, useEffect, useCallback} from 'react'
 import CartItem from '../CartItem';
 import {useMediaQuery} from '@material-ui/core';
 import PageHeader from '../PageHeader/';
@@ -43,7 +43,8 @@ const Cart = () => {
 	}
 
 	// I'm moving this function into the component scope to make it available to 2 methods
-	const getUserOrders = async() => {
+  
+	const getUserOrders = useCallback(async() => {
 		try {
 			const userOrders = await helpGetOrders()
 			console.log('userOrders', userOrders);
@@ -51,7 +52,7 @@ const Cart = () => {
 		} catch(err) {
 			console.log(err);
 		}
-	}
+	}, [])
 
 
 	useEffect(() => {
