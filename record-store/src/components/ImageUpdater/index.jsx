@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect, useContext, useCallback} from 'react';
 import PageHeader from '../PageHeader';
 import StyledImageUpdater from './style'
 import {helpFetchImages, helpUpdateUser} from '../../helpers/apiCalls'
@@ -7,38 +7,38 @@ import {AppContext} from '../../context/Context'
 
 const ImageUpdater = () => {
 
-	const {user, setUser, profileImages, setProfileImages} = useContext(AppContext)
+	const {user, setUser, profileImages, setProfileImages} = useContext(AppContext);
 
 	useEffect(() => {
 		const fetchImages = async () => {
 			try {
-				const images = await helpFetchImages()
+				const images = await helpFetchImages();
 
-				setProfileImages(images.data)
+				setProfileImages(images.data);
 				
 			} catch(err) {
 				console.log(err);
 			}
 		}
-		fetchImages()
-	},[setProfileImages])
+		fetchImages();
 
-	const altText = (urlStr) => urlStr.match(/weird\w+/)[0]
+    console.log('user avatar on unmounting', user.avatar);
+    return () => helpUpdateUser(user);
+	},[setProfileImages, user]);
 
-	const avatars = profileImages.map((image) => {
-		const alt = altText(image.url)
-		return <img tabIndex="0" onClick={() => setUser({...user, avatar: image.url})} key={alt} src={image.url} alt={alt}/>
-	})
-	
-	useEffect(() => {
-		const sendNewUser = async () => {
-			try {
-				await helpUpdateUser(user)
-			} catch(err) {
-				console.log(err);
-			}
-		}
-		return () => sendNewUser
+  const altText = useCallback((urlStr) => {
+    return urlStr.match(/weird\w+/)[0];
+  }, [])
+  
+  // // updates the user avatar on component unmounted
+	// useEffect(() => {
+  //   console.log('user avatar on unmounting', user.avatar);
+  //   return () => helpUpdateUser(user);
+	// })
+
+  const avatars = profileImages.map((image) => {
+		const alt = altText(image.url);
+		return <img tabIndex="0" onClick={() => setUser({...user, avatar: image.url})} key={alt} src={image.url} alt={alt}/>;
 	})
 	
 
@@ -53,4 +53,4 @@ const ImageUpdater = () => {
     )
 }
 
-export default ImageUpdater
+export default ImageUpdater;

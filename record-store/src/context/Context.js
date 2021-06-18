@@ -1,17 +1,18 @@
-import { createContext, useState, useEffect } from "react";
-import { authenticateUser } from "../helpers/apiCalls";
+import { createContext, useState, useEffect } from 'react';
+import { authenticateUser } from '../helpers/apiCalls';
 
 export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
   const [profileImages, setProfileImages] = useState([]);
   const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    nickname: "",
-    password: "",
-    _id: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    nickname: '',
+    password: '',
+    _id: '',
+    avatar: '',
   });
   const [records, setRecords] = useState([]);
   const [currentOrder, setCurrentOrder] = useState([]);
@@ -22,20 +23,21 @@ const AppContextProvider = ({ children }) => {
     const authenticator = async () => {
       try {
         const returnedUser = await authenticateUser();
-				
-				console.log("returned user by authenticator", returnedUser);
-        
-				if (!returnedUser) {
-					setUser({
-						firstName: "",
-						lastName: "",
-						email: "",
-						nickname: "",
-						password: "",
-						_id: "",
-					});
-					setAuthIsDone(true);
-					return;
+
+        console.log('returned user by authenticator', returnedUser);
+
+        if (!returnedUser) {
+          setUser({
+            firstName: '',
+            lastName: '',
+            email: '',
+            nickname: '',
+            password: '',
+            _id: '',
+            avatar: '',
+          });
+          setAuthIsDone(true);
+          return;
         }
         setUser(returnedUser);
         setAuthIsDone(true);
@@ -45,7 +47,6 @@ const AppContextProvider = ({ children }) => {
     };
     authenticator();
   }, []);
-
 
   return (
     <AppContext.Provider
@@ -60,7 +61,8 @@ const AppContextProvider = ({ children }) => {
         setCurrentOrder,
         orders,
         setOrders,
-				authIsDone, setAuthIsDone
+        authIsDone,
+        setAuthIsDone,
       }}
     >
       {children}
