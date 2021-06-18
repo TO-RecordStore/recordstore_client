@@ -1,7 +1,7 @@
 import React, {useEffect, useContext, useCallback} from 'react';
 import PageHeader from '../PageHeader';
 import StyledImageUpdater from './style'
-import {helpFetchImages, helpUpdateUser} from '../../helpers/apiCalls'
+import {helpFetchImages} from '../../helpers/apiCalls'
 import {AppContext} from '../../context/Context'
 
 
@@ -22,20 +22,12 @@ const ImageUpdater = () => {
 		}
 		fetchImages();
 
-    console.log('user avatar on unmounting', user.avatar);
-    return () => helpUpdateUser(user);
-	},[setProfileImages, user]);
+	},[setProfileImages]);
 
   const altText = useCallback((urlStr) => {
     return urlStr.match(/weird\w+/)[0];
   }, [])
   
-  // // updates the user avatar on component unmounted
-	// useEffect(() => {
-  //   console.log('user avatar on unmounting', user.avatar);
-  //   return () => helpUpdateUser(user);
-	// })
-
   const avatars = profileImages.map((image) => {
 		const alt = altText(image.url);
 		return <img tabIndex="0" onClick={() => setUser({...user, avatar: image.url})} key={alt} src={image.url} alt={alt}/>;
@@ -44,7 +36,7 @@ const ImageUpdater = () => {
 
     return(
 		<StyledImageUpdater>
-			<PageHeader h2="You can also update your avatar!" par="Grab one cool pic! You don't need to save!"/>
+			<PageHeader h2="You can also update your avatar!" par="Grab one cool pic! Don't forget to save!"/>
 			<img tabIndex="0" className="profile-image" src={user.avatar} alt={user.nickname}/>
 			
 			{avatars}

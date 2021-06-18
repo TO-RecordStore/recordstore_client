@@ -35,6 +35,7 @@ const ProfilePage = () => {
     }
 	}
 
+
   return (
     <StyledMain stackSections={stackSections}>
       <Form submitHandler={submitHandler}>

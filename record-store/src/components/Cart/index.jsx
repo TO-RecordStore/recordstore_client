@@ -48,12 +48,12 @@ const Cart = () => {
 		} catch(err) {
 			console.log(err);
 		}
-	}, [])
+	}, [setOrders])
 
 
 	useEffect(() => {
 		getUserOrders()
-	}, [])
+	}, [getUserOrders])
 
 
 	useEffect(() => {
