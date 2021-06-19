@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, {useState, useContext, useEffect, useCallback} from 'react'
 import CartItem from '../CartItem';
 import {useMediaQuery} from '@material-ui/core';
 import PageHeader from '../PageHeader/';
@@ -25,25 +25,22 @@ const Cart = () => {
 			quantity: order.quantity
 		}})
 		
-		console.log(currentOrderIndices)
+		console.log('currentOrderIndices', currentOrderIndices)
 		try {
-			const newOrder =  await helpAddOrder(currentOrderIndices)
+			const newOrder = await helpAddOrder(currentOrderIndices)
 			console.log('new order we return from the create() method', newOrder);
-			
-			//! let's not do the following: 
-			//! setOrders([newOrder, ...orders])
-			// because we take only ids to send them to our backend when we create an order. we need all the populated info in here
 
-			getUserOrders()
+			getUserOrders();
 
-			setCurrentOrder([])
+			setCurrentOrder([]);
 		} catch(err) {
-			console.log(err)
+			console.log(err);
 		}
 	}
 
 	// I'm moving this function into the component scope to make it available to 2 methods
-	const getUserOrders = async() => {
+  
+	const getUserOrders = useCallback(async() => {
 		try {
 			const userOrders = await helpGetOrders()
 			console.log('userOrders', userOrders);
@@ -51,12 +48,12 @@ const Cart = () => {
 		} catch(err) {
 			console.log(err);
 		}
-	}
+	}, [setOrders])
 
 
 	useEffect(() => {
 		getUserOrders()
-	}, [])
+	}, [getUserOrders])
 
 
 	useEffect(() => {

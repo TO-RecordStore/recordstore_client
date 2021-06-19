@@ -13,6 +13,7 @@ import {helpUpdateUser} from '../../helpers/apiCalls'
 const ProfilePage = () => {
   const {user, setUser} = useContext(AppContext)
   const [currUser, setCurrUser] = useState({
+    id: user._id,
 	  lastName: user.lastName,
 	  firstName: user.firstName,
 	  email: user.email,
@@ -33,6 +34,7 @@ const ProfilePage = () => {
       console.log(err)
     }
 	}
+
 
   return (
     <StyledMain stackSections={stackSections}>

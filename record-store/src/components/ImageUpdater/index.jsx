@@ -1,50 +1,42 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect, useContext, useCallback} from 'react';
 import PageHeader from '../PageHeader';
 import StyledImageUpdater from './style'
-import {helpFetchImages, helpUpdateUser} from '../../helpers/apiCalls'
+import {helpFetchImages} from '../../helpers/apiCalls'
 import {AppContext} from '../../context/Context'
 
 
 const ImageUpdater = () => {
 
-	const {user, setUser, profileImages, setProfileImages} = useContext(AppContext)
+	const {user, setUser, profileImages, setProfileImages} = useContext(AppContext);
 
 	useEffect(() => {
 		const fetchImages = async () => {
 			try {
-				const images = await helpFetchImages()
+				const images = await helpFetchImages();
 
-				setProfileImages(images.data)
+				setProfileImages(images.data);
 				
 			} catch(err) {
 				console.log(err);
 			}
 		}
-		fetchImages()
-	},[setProfileImages])
+		fetchImages();
 
-	const altText = (urlStr) => urlStr.match(/weird\w+/)[0]
+	},[setProfileImages]);
 
-	const avatars = profileImages.map((image) => {
-		const alt = altText(image.url)
-		return <img tabIndex="0" onClick={() => setUser({...user, avatar: image.url})} key={alt} src={image.url} alt={alt}/>
-	})
-	
-	useEffect(() => {
-		const sendNewUser = async () => {
-			try {
-				await helpUpdateUser(user)
-			} catch(err) {
-				console.log(err);
-			}
-		}
-		return () => sendNewUser
+  const altText = useCallback((urlStr) => {
+    return urlStr.match(/weird\w+/)[0];
+  }, [])
+  
+  const avatars = profileImages.map((image) => {
+		const alt = altText(image.url);
+		return <img tabIndex="0" onClick={() => setUser({...user, avatar: image.url})} key={alt} src={image.url} alt={alt}/>;
 	})
 	
 
     return(
 		<StyledImageUpdater>
-			<PageHeader h2="You can also update your avatar!" par="Grab one cool pic! You don't need to save!"/>
+			<PageHeader h2="You can also update your avatar!" par="Grab one cool pic! Don't forget to save!"/>
 			<img tabIndex="0" className="profile-image" src={user.avatar} alt={user.nickname}/>
 			
 			{avatars}
@@ -53,4 +45,4 @@ const ImageUpdater = () => {
     )
 }
 
-export default ImageUpdater
+export default ImageUpdater;

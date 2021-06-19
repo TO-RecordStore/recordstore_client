@@ -23,3 +23,13 @@ In the command line interface, run `npm install` to install the dependencies.
 - `npm run build` — Builds the app for production to the `build` folder.
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+## BUGS & TODOS
+
+1. Signup --> store --> cart --> Loading
+2. Logout route! & Logout button
+3. Cart: adding/removing records with +/-
+4. Cart: styling
+5. Images we use
+
+Also, a [bigger list in the issue here](https://github.com/TO-RecordStore/recordstore_client/issues/5)
