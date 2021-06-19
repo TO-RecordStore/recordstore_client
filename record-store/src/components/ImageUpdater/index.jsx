@@ -25,13 +25,14 @@ const ImageUpdater = () => {
 	},[setProfileImages]);
 
   const altText = useCallback((urlStr) => {
+    console.log('urlstring redefined!');
     return urlStr.match(/weird\w+/)[0];
   }, [])
   
   const avatars = profileImages.map((image) => {
-		const alt = altText(image.url);
-		return <img tabIndex="0" onClick={() => setUser({...user, avatar: image.url})} key={alt} src={image.url} alt={alt}/>;
-	})
+    const alt = altText(image.url);
+    return <img tabIndex="0" onClick={() => setUser({...user, avatar: image.url})} key={alt} src={image.url} alt={alt}/>;
+  })
 	
 
     return(

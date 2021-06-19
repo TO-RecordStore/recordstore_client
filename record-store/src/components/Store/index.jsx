@@ -37,7 +37,6 @@ const StorePage = () => {
     const recordInsideOrder = currentOrder.find(
       (order) => order.record._id === orderedRecord.record._id
     );
-    console.log('recordInsideOrder', recordInsideOrder);
 
     if (!recordInsideOrder) {
       setCurrentOrder([...currentOrder, orderedRecord]);
@@ -51,8 +50,6 @@ const StorePage = () => {
       setCurrentOrder([...newOrder]);
     }
   };
-
-  // console.log(currentOrder);
 
   const recordsArray = records.map((record) => {
     return (

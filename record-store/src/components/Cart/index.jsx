@@ -25,7 +25,7 @@ const Cart = () => {
 			quantity: order.quantity
 		}})
 		
-		console.log('currentOrderIndices', currentOrderIndices)
+		// console.log('currentOrderIndices', currentOrderIndices)
 		try {
 			const newOrder = await helpAddOrder(currentOrderIndices)
 			console.log('new order we return from the create() method', newOrder);
@@ -43,7 +43,7 @@ const Cart = () => {
 	const getUserOrders = useCallback(async() => {
 		try {
 			const userOrders = await helpGetOrders()
-			console.log('userOrders', userOrders);
+			// console.log('userOrders', userOrders);
 			setOrders(userOrders)
 		} catch(err) {
 			console.log(err);
@@ -63,7 +63,6 @@ const Cart = () => {
 
 	const orderArray = currentOrder.map(orderItem => <CartItem key={orderItem.record._id} className={"current-item"} orderItem={orderItem} />)
 
-	console.log('orders, the state (past orders):', orders);
 
 	const pastOrdersArray = orders.map((order) => {
 		console.log('order from the past orders ==>', order);
