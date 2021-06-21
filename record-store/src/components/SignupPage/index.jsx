@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Form from "../Form";
-import {TextField, useMediaQuery} from "@material-ui/core";
+import { TextField, useMediaQuery } from "@material-ui/core";
 import Button from "../Button";
 import PageHeader from "../PageHeader";
 import { Link } from "react-router-dom";
@@ -12,40 +12,41 @@ import StyledMain from "../LoginPage/style";
 
 const SignupPage = ({ history }) => {
   const { setUser, setAuthIsDone } = useContext(AppContext);
-  const [validationError, setValidationError] = useState('');
-	const [pwMatchError, setPwMatchError] = useState(false);
-  const displaySideImage = useMediaQuery('(min-width:1000px)');
+  const [validationError, setValidationError] = useState("");
+  const [pwMatchError, setPwMatchError] = useState(false);
+  const displaySideImage = useMediaQuery("(min-width:1000px)");
   const [currentUser, setCurrentUser] = useState({
-		firstName: '',
-		lastName: '',
-		email: '',
-		nickname: '',
-		password: '',
-    repeatPassword:'',
-	})
+    firstName: "",
+    lastName: "",
+    email: "",
+    nickname: "",
+    password: "",
+    repeatPassword: "",
+  });
 
   const changeHandler = (e) => {
-		if (pwMatchError) setPwMatchError(false);
-		if (validationError) setValidationError('');
+    if (pwMatchError) setPwMatchError(false);
+    if (validationError) setValidationError("");
     setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
-  }; 
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (currentUser.repeatPassword !== currentUser.password) return setPwMatchError(true);
+    if (currentUser.repeatPassword !== currentUser.password)
+      return setPwMatchError(true);
     try {
       const newUserData = await helpAddUser(currentUser);
-      
-			if (newUserData.error) {
-				setValidationError(newUserData.error.message);
-				setAuthIsDone(true);
-			}
-			if (newUserData.data) {
-				setUser(newUserData.data);
-				setAuthIsDone(true);
-				history.push("/store");
-			}
-    } catch(err) {
+
+      if (newUserData.error) {
+        setValidationError(newUserData.error.message);
+        setAuthIsDone(true);
+      }
+      if (newUserData.data) {
+        setUser(newUserData.data);
+        setAuthIsDone(true);
+        history.push("/store");
+      }
+    } catch (err) {
       console.log(err);
     }
   };
@@ -56,37 +57,39 @@ const SignupPage = ({ history }) => {
         <PageHeader
           h2="Hurraaaaay! Let us know who you are!"
           par="We won't share your info with anybody."
-					error={validationError && validationError}
+          error={validationError && validationError}
         />
         {/* {validationError && <p className="error">{validationError}</p>} */}
-        <TextField
-          style={{ width: "50%", display: "inline-flex" }}
-          id="signup-first-name-input"
-          label="First name"
-          type="text"
-          name="firstName"
-          autoComplete="off"
-          value={currentUser.firstName}
-          onChange={changeHandler}
-          InputProps={{
-            inputProps: { minLength: 3, maxLength: 25 },
-          }}
-          required
-        />
-        <TextField
-          style={{ width: "50%", display: "inline-flex" }}
-          id="signup-last-name-input"
-          label="Last name"
-          type="text"
-          autoComplete="off"
-          name="lastName"
-          value={currentUser.lastName}
-          onChange={changeHandler}
-          InputProps={{
-            inputProps: { minLength: 3, maxLength: 25 },
-          }}
-          required
-        />
+        <div>
+          <TextField
+            style={{ width: "50%", display: "inline-flex" }}
+            id="signup-first-name-input"
+            label="First name"
+            type="text"
+            name="firstName"
+            autoComplete="off"
+            value={currentUser.firstName}
+            onChange={changeHandler}
+            InputProps={{
+              inputProps: { minLength: 3, maxLength: 25 },
+            }}
+            required
+          />
+          <TextField
+            style={{ width: "50%", display: "inline-flex" }}
+            id="signup-last-name-input"
+            label="Last name"
+            type="text"
+            autoComplete="off"
+            name="lastName"
+            value={currentUser.lastName}
+            onChange={changeHandler}
+            InputProps={{
+              inputProps: { minLength: 3, maxLength: 25 },
+            }}
+            required
+          />
+        </div>
         <TextField
           id="signup-email-input"
           label="Email"
@@ -139,11 +142,13 @@ const SignupPage = ({ history }) => {
           helperText={pwMatchError && "Passwords don't match!"}
         />
         <Button text="Create account" />
-        <Link to="/login">
-          <small>Already have an account? Log in here!</small>
-        </Link>
+        <small>
+          Already have an account? Log in<Link to="/login"> here!</Link>
+        </small>
       </Form>
-      {displaySideImage && <SideImage image={jmb} altTxt="another guy with a cigarette" />}
+      {displaySideImage && (
+        <SideImage image={jmb} altTxt="another guy with a cigarette" />
+      )}
     </StyledMain>
   );
 };
