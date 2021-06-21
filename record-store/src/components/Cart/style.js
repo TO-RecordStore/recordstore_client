@@ -1,20 +1,32 @@
-import styled from "styled-components";
-import StyledMain from "../LoginPage/style";
+import styled from 'styled-components';
+import StyledMain from '../LoginPage/style';
 
 const StyledCart = styled(StyledMain)`
   flex-direction: column;
 
-  .current-order {
+  .current-order,
+  .previous-order {
     display: grid;
-    grid-template-columns: ${(props) =>
-      props.stackSections ? "1fr" : "repeat(2, 1fr)"};
-    grid-template-rows: ${(props) =>
-      props.stackSections ? "repeat(2, auto)" : "auto"};
     gap: 1.5rem;
 
     ul {
       display: grid;
       gap: 1.5rem;
+    }
+  }
+  .current-order {
+    grid-template-columns: ${(props) =>
+      props.stackSections ? '1fr' : 'repeat(2, 1fr)'};
+    grid-template-rows: ${(props) =>
+      props.stackSections ? 'repeat(2, auto)' : 'auto'};
+  }
+  .previous-order {
+    grid-template-columns: '1fr';
+    grid-template-rows: 'auto';
+
+    header {
+      display: flex;
+      justify-content: space-between;
     }
   }
 
@@ -41,13 +53,13 @@ const StyledCart = styled(StyledMain)`
       width: 15rem;
     }
 
-	button {
-		background: ${({theme}) => theme.color.accentOne};
-		color: ${({theme}) => theme.color.white};
-		:hover {
-			background: ${props => props.theme.color.neutralDark};
-		}
-	}
+    button {
+      background: ${({ theme }) => theme.color.accentOne};
+      color: ${({ theme }) => theme.color.white};
+      :hover {
+        background: ${(props) => props.theme.color.neutralDark};
+      }
+    }
   }
 `;
 

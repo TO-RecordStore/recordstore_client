@@ -61,18 +61,23 @@ const Cart = () => {
 		setOrderPrice(totalPrice)
 	}, [currentOrder])
 
-	const orderArray = currentOrder.map(orderItem => <CartItem key={orderItem.record._id} className={"current-item"} orderItem={orderItem} />)
+  const getDate = (date) => {
+    const fullDateString = new Date(date);
+    return `${fullDateString.getDate()}/${fullDateString.getMonth()}/${fullDateString.getFullYear()}`
+  };
+
+	const orderArray = currentOrder.map(orderItem => <CartItem key={orderItem.record._id} className={"current-item"} orderItem={orderItem} controls />)
 
 
 	const pastOrdersArray = orders.map((order) => {
 		console.log('order from the past orders ==>', order);
 		return <section key={order._id} className="previous-order">
 		<header>
-			<span>{order.createdAt}</span>
-			<span>{order.totalPrice}</span>
+			<span>{getDate(order.createdAt)}</span>
+			<span>€{order.totalPrice}</span>
 		</header>
 		<ul>
-			{order.records.map((record) => <CartItem key={record._id} className={"past-item"} orderItem={record} />)}
+			{order.records.map((record) => <CartItem key={record._id} className={"past-item"} orderItem={record} controls={false} />)}
 		</ul>
 		</section>
 })
@@ -89,7 +94,7 @@ const Cart = () => {
 					<img src={flamingBeer} alt="flaming-beer"/>
 					<div className="order-total">
 						<span>order total</span>
-						<span>{orderPrice}</span>
+						<span>€{orderPrice}</span>
 					</div>
 					<Button clickHandler={clickHandler} text="Buy Now" />
 					<p>Buy your order now and get for free a small alcohol free Heineken on fire!!</p>
