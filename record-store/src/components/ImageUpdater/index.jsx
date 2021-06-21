@@ -1,4 +1,4 @@
-import React, {useEffect, useContext, useCallback} from 'react';
+import React, {useEffect, useContext} from 'react';
 import PageHeader from '../PageHeader';
 import StyledImageUpdater from './style'
 import {helpFetchImages} from '../../helpers/apiCalls'
@@ -24,13 +24,10 @@ const ImageUpdater = () => {
 
 	},[setProfileImages]);
 
-  const altText = useCallback((urlStr) => {
-    console.log('urlstring redefined!');
-    return urlStr.match(/weird\w+/)[0];
-  }, [])
+  const generateAltText = (urlStr) => urlStr.match(/weird\w+/)[0];
   
   const avatars = profileImages.map((image) => {
-    const alt = altText(image.url);
+    const alt = generateAltText(image.url);
     return <img tabIndex="0" onClick={() => setUser({...user, avatar: image.url})} key={alt} src={image.url} alt={alt}/>;
   })
 	
