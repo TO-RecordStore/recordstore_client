@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-const URL = 'http://localhost:5001';
+const URL = process.env.REACT_APP_API_BASE_URL;
 axios.defaults.withCredentials = true;
 
 export const helpFetchImages = async () => {
+  console.log(URL);
   try {
     const images = await axios.get(`${URL}/images`);
     return images;
@@ -37,9 +38,8 @@ export const helpFetchRecords = async () => {
 // PUT to update the user info
 export const helpUpdateUser = async (userData) => {
   const { _id, ...newUserData } = userData;
-  console.log('newUserData', newUserData);
+
   try {
-    // id, firstname, lastname, nickname
     const updatedUser = await axios.put(`${URL}/users/${_id}`, newUserData);
     return updatedUser;
   } catch (err) {
