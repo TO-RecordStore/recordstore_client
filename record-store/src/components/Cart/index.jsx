@@ -101,8 +101,14 @@ const Cart = () => {
 				</div>
 			</section>
 
-			<h3>previous orders</h3>
-			{pastOrdersArray}
+			
+			{
+      pastOrdersArray?.length &&
+        <>
+          <h3>previous orders</h3>
+          {pastOrdersArray}
+        </>
+      }
 
 		</StyledCart>
 	)
