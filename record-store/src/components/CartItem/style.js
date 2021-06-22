@@ -4,8 +4,9 @@ export const StyledCartItem = styled.li`
   display: grid;
   grid-template-rows: auto auto;
   grid-template-columns: 100px 1fr;
-  gap: 2rem;
-  padding: 2rem;
+  row-gap: 1rem;
+  column-gap: 2rem;
+  padding: 1.5rem;
   background-color: ${(props) =>
     props.className === 'current-item'
       ? props.theme.color.black
@@ -24,6 +25,7 @@ export const StyledCartItem = styled.li`
       font-weight: normal;
       font-size: ${({ theme }) => theme.fontSize.medium};
       text-transform: capitalize;
+      margin-top: 0;
     }
     span:first-of-type {
       font-weight: bold;
@@ -42,10 +44,12 @@ export const StyledCartItem = styled.li`
     color: ${(props) => props.theme.color.white};
   }
   .controls {
+    width: 8rem;
     justify-self: start;
     visibility: ${(props) =>
       (props.className = 'current-item' ? 'visible' : 'hidden')};
     display: flex;
+    justify-content: space-between;
     align-items: center;
   }
   .total-price {
@@ -66,9 +70,10 @@ export const StyledControl = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 3rem;
-  height: 3rem;
-  font-size: 1.5rem;
+  min-width: 2.2rem;
+  height: 2.2rem;
+  padding: 0.3rem;
+  font-size: ${({ theme }) => theme.fontSize.small};
   font-weight: 700;
   background: ${(props) =>
     !props.inverted ? props.theme.color.white : 'transparent'};

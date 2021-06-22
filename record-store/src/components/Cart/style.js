@@ -8,6 +8,7 @@ const StyledCart = styled(StyledMain)`
   h3 {
     text-transform: uppercase;
     font-size: ${({ theme }) => theme.fontSize.smallHeadline};
+    margin: 1rem 0;
   }
 
   .current-order,

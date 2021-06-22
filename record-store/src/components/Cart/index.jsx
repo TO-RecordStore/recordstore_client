@@ -61,8 +61,8 @@ const Cart = () => {
 
 
 	useEffect(() => {
-		const totalPrice = currentOrder.reduce((acc, curr) => acc + curr.quantity * curr.record.price, 0)
-		setOrderPrice(totalPrice)
+		const totalPrice = currentOrder.reduce((acc, curr) => acc + curr.quantity * curr.record.price, 0);
+		setOrderPrice(totalPrice);
 	}, [currentOrder])
 
   const getDate = (date) => {
@@ -119,7 +119,7 @@ const Cart = () => {
               <img src={flamingBeer} alt="flaming-beer"/>
               <div className="order-total">
                 <span>order total</span>
-                <span>€{orderPrice.toFixed(2)}</span>
+                <span>€{orderPrice?.toFixed(2)}</span>
               </div>
               <Button clickHandler={clickHandler} text="Buy Now" />
               <p>Place your order now and get for free a small alcohol-free Heineken on fire!!</p>
@@ -128,9 +128,8 @@ const Cart = () => {
         </> :
         <>
           <h3>Your cart is empty!</h3>
-          <section className="cart-empty summary">
-            <img src={giphyrecord} alt="spinning record"/>
-            
+          <section className="summary">
+            <img src={giphyrecord} alt="spinning record on the top of a blue high-heel shoe"/>
             <Button clickHandler={() => history.push('/store')} text="Shop Now" />
             <p>Go buy some records!</p>
           </section>
