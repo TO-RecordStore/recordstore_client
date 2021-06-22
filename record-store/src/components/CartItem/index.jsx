@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledCartItem, StyledControl } from "./style";
 
-const CartItem = ({ className, orderItem, controls }) => {
+const CartItem = ({ className, orderItem, controls, handlePlus, handleMinus }) => {
   const { cover, artist, title, price } = orderItem.record;
   const { quantity } = orderItem;
 
@@ -16,11 +16,11 @@ const CartItem = ({ className, orderItem, controls }) => {
         <span>€{price}</span>
       </div>
       {controls ? <div className="controls">
-        <StyledControl>+</StyledControl>
+        <StyledControl onClick={() => handlePlus(orderItem)}>+</StyledControl>
         <StyledControl as="span" inverted={true}>
           {quantity}
         </StyledControl>
-        <StyledControl>&ndash;</StyledControl>
+        <StyledControl onClick={() => handleMinus(orderItem)}>&ndash;</StyledControl>
       </div> :
       <div className="total-price">
         <span>Total</span>

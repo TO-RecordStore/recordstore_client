@@ -11,7 +11,7 @@ import {helpAddOrder, helpGetOrders} from '../../helpers/apiCalls'
 
 const Cart = () => {
 
-	const {currentOrder, orders, setCurrentOrder, setOrders} = useContext(AppContext)
+	const {currentOrder, orders, setCurrentOrder, setOrders} = useContext(AppContext);
 
 	const stackSections = useMediaQuery('(max-width:800px)');
 
@@ -66,7 +66,26 @@ const Cart = () => {
     return `${fullDateString.getDate()}/${fullDateString.getMonth()}/${fullDateString.getFullYear()}`
   };
 
-	const orderArray = currentOrder.map(orderItem => <CartItem key={orderItem.record._id} className={"current-item"} orderItem={orderItem} controls />)
+  const handlePlus = (item) => {
+    const updatedOrder = currentOrder.map(listItem => item.record._id === listItem.record._id ? {...listItem, quantity: item.quantity + 1} : listItem);
+    setCurrentOrder([...updatedOrder]);
+  }
+  const handleMinus = (item) => {
+    const updatedOrder = currentOrder.map(listItem => {
+      if (item.record._id === listItem.record._id) {
+        if (listItem.quantity > 1) {
+          return {...listItem, quantity: item.quantity - 1};
+        } else {
+          return null;
+        }
+      } else {
+        return listItem;
+      }
+    });
+    setCurrentOrder([...updatedOrder.filter(item => item !== null)]);
+  }
+
+	const orderArray = currentOrder.map(orderItem => <CartItem key={orderItem.record._id} className={"current-item"} orderItem={orderItem} handlePlus={handlePlus} handleMinus={handleMinus} controls />)
 
 
 	const pastOrdersArray = orders.map((order) => {

@@ -3,6 +3,7 @@ import StyledMain from '../LoginPage/style';
 
 const StyledCart = styled(StyledMain)`
   flex-direction: column;
+  padding: 1rem 5%;
 
   h3 {
     text-transform: uppercase;
