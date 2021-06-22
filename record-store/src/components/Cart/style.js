@@ -8,7 +8,6 @@ const StyledCart = styled(StyledMain)`
   h3 {
     text-transform: uppercase;
     font-size: ${({ theme }) => theme.fontSize.smallHeadline};
-    margin-bottom: 1rem;
   }
 
   .current-order,
@@ -36,6 +35,7 @@ const StyledCart = styled(StyledMain)`
       display: flex;
       justify-content: space-between;
       font-weight: bold;
+      margin-top: 2rem;
       span:nth-of-type(2) {
         font-size: ${({ theme }) => theme.fontSize.largeX};
       }

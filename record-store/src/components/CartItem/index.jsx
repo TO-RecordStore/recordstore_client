@@ -24,7 +24,7 @@ const CartItem = ({ className, orderItem, controls, handlePlus, handleMinus }) =
       </div> :
       <div className="total-price">
         <span>Total</span>
-        <span>€{price * quantity}</span>
+        <span>€{(price * quantity).toFixed(2)}</span>
       </div>}
       
     </StyledCartItem>
