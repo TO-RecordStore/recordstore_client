@@ -97,7 +97,7 @@ const Cart = () => {
 						<span>€{orderPrice}</span>
 					</div>
 					<Button clickHandler={clickHandler} text="Buy Now" />
-					<p>Buy your order now and get for free a small alcohol free Heineken on fire!!</p>
+					<p>Place your order now and get for free a small alcohol-free Heineken on fire!!</p>
 				</div>
 			</section>
 

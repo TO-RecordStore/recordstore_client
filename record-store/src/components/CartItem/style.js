@@ -19,6 +19,21 @@ export const StyledCartItem = styled.li`
     display: flex;
     flex-direction: column;
     color: ${(props) => props.theme.color.white};
+
+    h3 {
+      font-weight: normal;
+      font-size: ${({ theme }) => theme.fontSize.medium};
+      text-transform: capitalize;
+    }
+    span:first-of-type {
+      font-weight: bold;
+    }
+    span:last-of-type {
+      margin-top: 0.5rem;
+    }
+    & > * {
+      margin-bottom: 0.5rem;
+    }
   }
   .controls,
   .total-price {
@@ -39,7 +54,10 @@ export const StyledCartItem = styled.li`
     flex-direction: column;
 
     & > span:first-child {
+      align-self: flex-end;
       text-transform: uppercase;
+      font-weight: bold;
+      font-size: ${({ theme }) => theme.fontSize.small};
     }
   }
 `;
