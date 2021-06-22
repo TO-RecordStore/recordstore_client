@@ -59,10 +59,9 @@ const SignupPage = ({ history }) => {
           par="We won't share your info with anybody."
           error={validationError && validationError}
         />
-        {/* {validationError && <p className="error">{validationError}</p>} */}
-        <div>
+        
+        <div className="name-group">
           <TextField
-            style={{ width: "50%", display: "inline-flex" }}
             id="signup-first-name-input"
             label="First name"
             type="text"
@@ -76,7 +75,6 @@ const SignupPage = ({ history }) => {
             required
           />
           <TextField
-            style={{ width: "50%", display: "inline-flex" }}
             id="signup-last-name-input"
             label="Last name"
             type="text"

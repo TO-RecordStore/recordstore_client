@@ -1,12 +1,17 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: clamp(50%, 500px, 100%);
-  padding: 5rem 29rem 5rem 15rem;
+  padding: 5%;
+  margin: auto;
 
+  .name-group {
+    flex-direction: column;
+    width: 100%;
+  }
   div {
     display: flex;
     margin-bottom: 1rem;
@@ -18,7 +23,7 @@ const StyledForm = styled.form`
       letter-spacing: 0.3px;
     }
     .MuiFormControl-root:first-child {
-      margin-right: 10px;
+      margin-right: 0px;
     }
 
     .MuiFormLabel-root {
@@ -30,7 +35,7 @@ const StyledForm = styled.form`
     .MuiInput-underline:before,
     .MuiInput-underline:after {
       border-bottom: ${({ theme }) =>
-        theme.borderWidth.regular + " solid " + theme.color.black};
+        theme.borderWidth.regular + ' solid ' + theme.color.black};
     }
     .MuiFormHelperText-root {
       font-family: ${({ theme }) => theme.fontFamily.sansSerifMain};
@@ -50,6 +55,19 @@ const StyledForm = styled.form`
 
   a:hover {
     color: ${({ theme }) => theme.color.neutralDark};
+  }
+
+  @media screen and (min-width: 500px) {
+    .name-group {
+      flex-direction: row;
+      & > div {
+        width: 50%;
+      }
+
+      .MuiFormControl-root:first-child {
+        margin-right: 10px;
+      }
+    }
   }
 `;
 
