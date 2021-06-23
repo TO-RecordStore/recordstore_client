@@ -1,22 +1,27 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { StyledStore, StyledRecordsContainer } from "./style";
 import PageHeader from "../PageHeader";
 import { helpFetchRecords } from "../../helpers/apiCalls";
 import { AppContext } from "../../context/Context";
 import { BsPlusSquareFill } from "react-icons/bs";
+import Loading from "../Loading";
 
 const StorePage = () => {
   const { records, setRecords, currentOrder, setCurrentOrder } = useContext(
     AppContext
   );
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const getRecords = async () => {
       try {
         const recordsData = await helpFetchRecords();
         setRecords(recordsData.data);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
+        setIsLoading(false);
       }
     };
     getRecords();
@@ -67,7 +72,11 @@ const StorePage = () => {
         par="Here you can find all our records."
       />
 
-      <StyledRecordsContainer>{recordsArray}</StyledRecordsContainer>
+      {
+        isLoading ? <Loading /> : 
+        <StyledRecordsContainer>{recordsArray}</StyledRecordsContainer>
+      }
+
     </StyledStore>
   );
 };
