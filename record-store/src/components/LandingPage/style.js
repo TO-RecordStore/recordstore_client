@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledLP = styled.main`
   height: calc(100vh - 7rem);

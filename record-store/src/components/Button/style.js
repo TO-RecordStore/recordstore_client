@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledButton = styled.button`
   padding: 0.75rem 1.5rem;
@@ -7,7 +7,7 @@ const StyledButton = styled.button`
   font-weight: 700;
   border: none;
   border-radius: ${(props) => props.theme.borderRadius.rounded};
-  background-color: none;
+  background-color: ${(props) => props.theme.color.neutral};
   transition: 0.3s;
   cursor: pointer;
 

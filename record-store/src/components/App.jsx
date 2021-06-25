@@ -11,6 +11,7 @@ import { ThemeProvider } from 'styled-components'
 import theme from '../theme/theme'
 import Cart from "./Cart";
 import PrivateRoute from './PrivateRoute/'
+import NotFound from "./NotFound";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
 		        <Route path="/store" component={StorePage} />
 		        <PrivateRoute path="/profile" redirectTo="/login" component={ProfilePage} />
 		        <PrivateRoute path="/cart" redirectTo='/login' component={Cart} />
+		        <Route path="/*" component={NotFound} />
 		      </Switch>
       	</ThemeProvider>
       </AppContextProvider>
