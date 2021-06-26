@@ -1,11 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledHeader = styled.header`
   background-color: ${(props) => props.theme.color.neutral};
   font-size: ${(props) => props.theme.fontSize.large};
   display: flex;
+  flex-direction: ${({ isFlexRow }) => (isFlexRow ? 'row' : 'column')};
   padding: 1rem 5%;
-  align-items: center;
+  align-items: ${({ isFlexRow }) => (isFlexRow ? 'center' : 'flex-start')};
 
   a {
     color: ${(props) => props.theme.color.black};
@@ -16,9 +17,12 @@ const StyledHeader = styled.header`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-  }
-  a:first-of-type {
-    /* flex-grow: 1; */
+    align-self: ${({ isFlexRow }) => !isFlexRow && 'flex-end'};
+
+    * {
+      display: flex;
+      align-items: center;
+    }
   }
 
   img {
@@ -27,7 +31,7 @@ const StyledHeader = styled.header`
     margin: 0 2rem;
     border: ${(props) =>
       props.theme.borderWidth.regular +
-      " solid " +
+      ' solid ' +
       props.theme.color.accentOne};
     border-radius: ${(props) => props.theme.borderRadius.round};
   }

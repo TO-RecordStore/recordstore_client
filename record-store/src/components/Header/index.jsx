@@ -5,6 +5,7 @@ import Button from "../Button/";
 import { AppContext } from "../../context/Context";
 import { HiShoppingCart, HiOutlineLogout } from "react-icons/hi";
 import { helpLogoutUser } from "../../helpers/apiCalls";
+import { useMediaQuery } from "@material-ui/core";
 
 const Header = () => {
   const [basketQuantity, setBasketQuantity] = useState(0);
@@ -16,7 +17,10 @@ const Header = () => {
     setAuthIsDone,
     setOrders,
   } = useContext(AppContext);
+
   const history = useHistory();
+
+  const placeHeaderElementsInRow = useMediaQuery("(min-width:500px)");
 
   useEffect(() => {
     const orderQuantity = currentOrder.reduce(
@@ -43,7 +47,7 @@ const Header = () => {
   };
 
   return (
-    <StyledHeader>
+    <StyledHeader isFlexRow={placeHeaderElementsInRow}>
       <Link to="/store">
         <h1>record store</h1>
       </Link>
