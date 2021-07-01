@@ -1,19 +1,21 @@
-import styled from 'styled-components';
-import StyledLP from '../LandingPage/style';
+import styled from "styled-components";
+import StyledLP from "../LandingPage/style";
 
 export const StyledStore = styled(StyledLP)`
-  padding: 0 5%;
+  padding: 5rem 5%;
 `;
 
 export const StyledRecordsContainer = styled.section`
   display: grid;
-  grid-template-rows: repeat(auto-fill, 200px);
-  grid-template-columns: repeat(auto-fill, 200px);
-  gap: 3rem;
+  grid-template-rows: repeat(auto-fill, 365px);
+  grid-template-columns: repeat(auto-fill, 365px);
+  gap: ${(props) => (props.shrinkGap ? "3rem" : "10rem")};
   justify-content: center;
+  padding: 10rem 0;
 
   div {
     position: relative;
+    box-shadow: ${({ theme }) => theme.boxShadow};
 
     svg {
       width: 3rem;
