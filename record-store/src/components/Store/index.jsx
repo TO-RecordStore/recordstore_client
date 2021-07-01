@@ -5,12 +5,14 @@ import { helpFetchRecords } from "../../helpers/apiCalls";
 import { AppContext } from "../../context/Context";
 import { BsPlusSquareFill } from "react-icons/bs";
 import Loading from "../Loading";
+import { useMediaQuery } from "@material-ui/core";
 
 const StorePage = () => {
-  const { records, setRecords, currentOrder, setCurrentOrder } = useContext(
-    AppContext
-  );
+  const { records, setRecords, currentOrder, setCurrentOrder } =
+    useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
+
+  const shrinkGap = useMediaQuery("(max-width: 930px)");
 
   useEffect(() => {
     setIsLoading(true);
@@ -72,11 +74,13 @@ const StorePage = () => {
         par="Here you can find all our records."
       />
 
-      {
-        isLoading ? <Loading /> : 
-        <StyledRecordsContainer>{recordsArray}</StyledRecordsContainer>
-      }
-
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <StyledRecordsContainer shrinkGap={shrinkGap}>
+          {recordsArray}
+        </StyledRecordsContainer>
+      )}
     </StyledStore>
   );
 };

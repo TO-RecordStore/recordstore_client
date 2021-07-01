@@ -53,9 +53,11 @@ const Header = () => {
       </Link>
       {user && user.avatar ? (
         <div className="button-group">
-          <Link to="/cart">
+          <Link to="/cart" className="basket-icon-wrapper">
             <HiShoppingCart />
-            <span>{basketQuantity}</span>
+            {basketQuantity > 0 && (
+              <span className="basket-quantity">{basketQuantity}</span>
+            )}
           </Link>
           <Link to={{ pathname: "/profile", state: user }}>
             <img src={user.avatar} alt={user.nickname} />
