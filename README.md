@@ -27,11 +27,28 @@ Backend part: [Record Store backend repo](https://github.com/TO-RecordStore/reco
 
 ## Stack
 
+### Frontend
+
 - React (bootstrapped with Create React App) with Hooks and Context API
 - React Router DOM
 - Axios
 - Styled Components
 - Material UI
+
+### Backend
+
+- Node.js with Express
+- MongoDB via Mongoose
+
+Additional:
+
+- dotenv
+- CORS
+- axios
+- bcrypt JS
+- JSON Web Token
+- faker.js
+- Last.fm API
 
 ## Development process
 
