@@ -76,7 +76,7 @@ const LoginPage = ({ history }) => {
         <Button text="Log in" />
 
         <small>
-          Don't have an account? Create one<Link to="/signup"> here!</Link>
+          Don't have an account? <Link to="/signup">Create one here!</Link>
         </small>
       </Form>
 

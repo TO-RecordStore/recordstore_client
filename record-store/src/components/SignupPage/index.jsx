@@ -145,7 +145,7 @@ const SignupPage = ({ history }) => {
         />
         <Button text="Create account" />
         <small>
-          Already have an account? Log in<Link to="/login"> here!</Link>
+          Already have an account? <Link to="/login">Log in here!</Link>
         </small>
       </Form>
       {displaySideImage && (
