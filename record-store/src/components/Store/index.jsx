@@ -6,10 +6,13 @@ import { AppContext } from "../../context/Context";
 import { BsPlusSquareFill } from "react-icons/bs";
 import Loading from "../Loading";
 import { useMediaQuery } from "@material-ui/core";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 const StorePage = () => {
-  const { records, setRecords, currentOrder, setCurrentOrder } =
-    useContext(AppContext);
+  const { appTitle, records, setRecords, currentOrder, setCurrentOrder } = useContext(AppContext);
+
+  useDocumentTitle(`${appTitle} | Records`);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const shrinkGap = useMediaQuery("(max-width: 930px)");

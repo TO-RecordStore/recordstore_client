@@ -9,11 +9,13 @@ import giphyrecord from '../../assets/giphyrecord.gif'
 import Button from '../Button';
 import {helpAddOrder, helpGetOrders} from '../../helpers/apiCalls';
 import {useHistory} from 'react-router-dom';
+import useDocumentTitle from '../../hooks/useDocumentTitle';
 
 
 const Cart = () => {
+	const { currentOrder, orders, setCurrentOrder, setOrders, appTitle } = useContext(AppContext);
 
-	const {currentOrder, orders, setCurrentOrder, setOrders} = useContext(AppContext);
+  useDocumentTitle(`${appTitle} | Cart`);
 
 	const stackSections = useMediaQuery('(max-width:800px)');
 

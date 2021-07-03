@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import StyledLP from "./style";
 import StoreHero from "../../assets/store.jpg";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
+import { AppContext } from "../../context/Context";
 
 const LandingPage = () => {
+  const { appTitle } = useContext(AppContext);
+  useDocumentTitle(`${appTitle} | Home`);
+
   return (
     <StyledLP>
       <img src={StoreHero} alt="record-store" />

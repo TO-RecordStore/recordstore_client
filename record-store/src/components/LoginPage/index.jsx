@@ -9,9 +9,13 @@ import SideImage from "../SideImage";
 import Lemmy from "../../assets/Lemmy.jpg";
 import { helpFetchUser } from "../../helpers/apiCalls";
 import { AppContext } from "../../context/Context";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 const LoginPage = ({ history }) => {
-  const { setUser, setAuthIsDone } = useContext(AppContext);
+  const { appTitle, setUser, setAuthIsDone } = useContext(AppContext);
+  
+  useDocumentTitle(`${appTitle} | Log in`);
+
   const [error, setError] = useState("");
   const [currentUser, setCurrentUser] = useState({
     email: "",
