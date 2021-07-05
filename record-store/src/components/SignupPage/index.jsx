@@ -9,9 +9,13 @@ import jmb from "../../assets/jmb.jpg";
 import { AppContext } from "../../context/Context";
 import { helpAddUser } from "../../helpers/apiCalls";
 import StyledMain from "../LoginPage/style";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 const SignupPage = ({ history }) => {
-  const { setUser, setAuthIsDone } = useContext(AppContext);
+  const { appTitle, setUser, setAuthIsDone } = useContext(AppContext);
+
+  useDocumentTitle(`${appTitle} | Sign up`);
+  
   const [validationError, setValidationError] = useState("");
   const [pwMatchError, setPwMatchError] = useState(false);
   const displaySideImage = useMediaQuery("(min-width:1000px)");
@@ -141,7 +145,7 @@ const SignupPage = ({ history }) => {
         />
         <Button text="Create account" />
         <small>
-          Already have an account? Log in<Link to="/login"> here!</Link>
+          Already have an account? <Link to="/login">Log in here!</Link>
         </small>
       </Form>
       {displaySideImage && (

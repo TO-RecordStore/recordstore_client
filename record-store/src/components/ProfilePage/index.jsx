@@ -7,11 +7,15 @@ import PageHeader from "../PageHeader";
 import ImageUpdater from '../ImageUpdater';
 import { FiLock } from "react-icons/fi";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import {AppContext} from '../../context/Context'
-import {helpUpdateUser} from '../../helpers/apiCalls'
+import {AppContext} from '../../context/Context';
+import {helpUpdateUser} from '../../helpers/apiCalls';
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 const ProfilePage = () => {
-  const {user, setUser} = useContext(AppContext)
+  const { appTitle, user, setUser } = useContext(AppContext);
+
+  useDocumentTitle(`${appTitle} | Profile`);
+  
   const [currUser, setCurrUser] = useState({
     id: user._id,
 	  lastName: user.lastName,

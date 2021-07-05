@@ -1,35 +1,69 @@
 # Record Store: Client
 
-Made by [TomasEliz](https://github.com/TomasEliz) and [olhanotolga](https://github.com/olhanotolga)
+A CRUD React & Node app made by [TomasEliz](https://github.com/TomasEliz) and [olhanotolga](https://github.com/olhanotolga).
+
+View live on Vercel: [The Record Store!](https://record-store.vercel.app).
+
+Backend part: [Record Store backend repo](https://github.com/TO-RecordStore/recordstore_backend).
+
+## Screenshots
+
+![Record Store: available records display](screenshots/recordstore-records.png)
+
+![Record Store: user's profile](screenshots/recordstore-profile.png)
+
+![Record Store: user's shopping cart and past orders](screenshots/recordstore-cart.png)
+
+## Features
+
+- View available records in the store (unrestricted)
+- Create a new account (Sign up)
+- Log into your account
+- Edit profile information
+- Pick an avatar from the collection
+- Add records to the cart & place an order
+- View past orders
+- Log out (clear cookies)
 
 ## Stack
 
-- React (bootstrapped with Create React App)
-- React Hooks
-- React Context
-- React Router
-- axios
-- styled components
+### Frontend
+
+- React (bootstrapped with Create React App) with Hooks and Context API
+- React Router DOM
+- Axios
+- Styled Components
 - Material UI
 
-## Run locally
+### Backend
 
-In the command line interface, run `npm install` to install the dependencies.
+- Node.js with Express
+- MongoDB via Mongoose
 
-### Available Scripts
+Additional:
 
-- `npm start` — Runs the app in the development mode on [http://localhost:3000](http://localhost:3000).
-- `npm test` — Launches the test runner in the interactive watch mode.
-- `npm run build` — Builds the app for production to the `build` folder.
+- dotenv
+- CORS
+- axios
+- bcrypt JS
+- JSON Web Token
+- faker.js
+- Last.fm API
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Development process
 
-## BUGS & TODOS
+The app's main functionality was built via pair programming using Live Share VSCode extention.
 
-1. Signup --> store --> cart --> Loading
-2. Logout route! & Logout button
-3. Cart: adding/removing records with +/-
-4. Cart: styling
-5. Images we use
+Additional functionality and final brushes workflow:
 
-Also, a [bigger list in the issue here](https://github.com/TO-RecordStore/recordstore_client/issues/5)
+- collaborator creates a feature branch and works on it;
+- upon completion, a Pull Request is made;
+- the other collaborator reviews the code and merges into master.
+
+## Running locally
+
+Clone the repo and run `npm install` in the CLI to install the dependencies.
+
+`npm start` — runs the app in the development mode on [http://localhost:3000](http://localhost:3000).
+
+`npm run build` — builds the app for production to the `build` folder.

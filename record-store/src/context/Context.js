@@ -1,9 +1,11 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useRef } from 'react';
 import { authenticateUser } from '../helpers/apiCalls';
 
 export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
+  const appTitle = useRef(document.title).current;
+
   const [profileImages, setProfileImages] = useState([]);
   const [user, setUser] = useState({
     firstName: '',
@@ -63,6 +65,7 @@ const AppContextProvider = ({ children }) => {
         setOrders,
         authIsDone,
         setAuthIsDone,
+        appTitle,
       }}
     >
       {children}
