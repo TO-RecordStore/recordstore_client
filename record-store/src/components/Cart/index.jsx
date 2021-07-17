@@ -140,11 +140,13 @@ const Cart = () => {
 
 			
 			{
-      pastOrdersArray?.length &&
+      pastOrdersArray?.length
+        ?
         <>
           <h3>previous orders</h3>
           {pastOrdersArray}
         </>
+        : null
       }
 
 		</StyledCart>

@@ -29,6 +29,14 @@ const LoginPage = ({ history }) => {
     setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
   };
 
+  // handler that pre-fills the inputs with a default user credentials:
+  const prefillHandler = () => {
+    setCurrentUser({
+      email: "ultimate.user@email.com",
+      password: "Test123!"
+    })
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
 
@@ -77,6 +85,9 @@ const LoginPage = ({ history }) => {
 
         <small>
           Don't have an account? <Link to="/signup">Create one here!</Link>
+        </small>
+        <small onClick={prefillHandler}>
+          Or log in as <span className="ultimate-user">the Ultimate User</span>!
         </small>
       </Form>
 
