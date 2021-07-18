@@ -51,8 +51,17 @@ const StyledForm = styled.form`
 
   small {
     margin-top: 2rem;
+
+    .ultimate-user {
+      color: ${({ theme }) => theme.color.accentOne};
+      font-weight: bold;
+      cursor: pointer;
+    }
   }
 
+  a {
+    font-weight: bold;
+  }
   a:hover {
     color: ${({ theme }) => theme.color.neutralDark};
   }
